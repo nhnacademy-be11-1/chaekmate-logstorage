@@ -17,7 +17,7 @@ public class LogConfig {
     @Value("${executor.boundary.size:500}")
     private int boundarySize;
     @Bean
-    public ExecutorService executorService(){
+    public ExecutorService logExecutorService(){
         return new ThreadPoolExecutor(
                 defaultSize,
                 maxSize,

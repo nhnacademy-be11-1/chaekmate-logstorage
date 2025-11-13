@@ -6,8 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 @Getter
-@SuperBuilder
 @NoArgsConstructor
+@SuperBuilder(toBuilder = true)
+
 public abstract class BaseLog {
     String logType;
     String serviceName;

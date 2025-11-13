@@ -1,7 +1,0 @@
-executor:
-  default:
-    size: ${EXECUTOR_DEFAULT}
-  max:
-    size: ${EXECUTOR_MAX}
-  boundary:
-    size: ${EXECUTOR_BOUNDARY}

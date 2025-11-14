@@ -8,9 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class LogRegistryInitializer {
-
     private final LogRegistryClient client;
-
     @EventListener(ApplicationReadyEvent.class)
     public void init() {
         client.register();

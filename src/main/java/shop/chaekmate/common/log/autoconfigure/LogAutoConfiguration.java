@@ -5,8 +5,9 @@ import org.springframework.context.annotation.Import;
 import shop.chaekmate.common.log.config.LogConfig;
 import shop.chaekmate.common.log.controller.LogController;
 import shop.chaekmate.common.log.executor.LogThreadPool;
-import shop.chaekmate.common.log.logging.Log;
 import shop.chaekmate.common.log.logging.LogContext;
+import shop.chaekmate.common.log.registry.LogRegistryClient;
+import shop.chaekmate.common.log.registry.LogRegistryInitializer;
 import shop.chaekmate.common.log.storage.LogStorage;
 
 @Configuration
@@ -16,7 +17,8 @@ import shop.chaekmate.common.log.storage.LogStorage;
         LogStorage.class,
         LogContext.class,
         LogController.class,
-        Log.class
+        LogRegistryInitializer.class,
+        LogRegistryClient.class
 })
 public class LogAutoConfiguration {
 }

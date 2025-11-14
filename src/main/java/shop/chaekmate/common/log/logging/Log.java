@@ -1,14 +1,12 @@
 package shop.chaekmate.common.log.logging;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import shop.chaekmate.common.log.dto.BaseLog;
 import shop.chaekmate.common.log.dto.ErrorLog;
 import shop.chaekmate.common.log.dto.InfoLog;
 import shop.chaekmate.common.log.dto.ResponseTimeLog;
 import shop.chaekmate.common.log.worker.LogWorker;
 
-@Component
 @RequiredArgsConstructor
 public class Log {
     public static void Info(String serviceName,

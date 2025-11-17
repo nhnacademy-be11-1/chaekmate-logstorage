@@ -10,29 +10,22 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder(toBuilder = true)
 public class ResponseTimeLog extends BaseLog {
     Long responseTime;
-    String path;
-    String httpMethod;
-
-
     public static ResponseTimeLog of(
             String serviceName,
+            String eventType,
             Long responseTime,
-            String path,
-            String httpMethod,
             String methodName,
             String className,
             String message,
             Object... args
-
     ) {
         return ResponseTimeLog.builder()
                 .logType("RESPONSE-TIME")
                 .serviceName(serviceName)
-                .httpMethod(httpMethod)
+                .eventType(eventType)
                 .responseTime(responseTime)
                 .className(className)
                 .methodName(methodName)
-                .path(path)
                 .occurrenceTime(LocalDateTime.now())
                 .message(LogMessageFormatter.format(message, args))
                 .build();

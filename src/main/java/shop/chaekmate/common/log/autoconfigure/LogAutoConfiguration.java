@@ -9,6 +9,7 @@ import shop.chaekmate.common.log.executor.LogThreadPool;
 import shop.chaekmate.common.log.logging.LogContext;
 import shop.chaekmate.common.log.registry.LogRegistryClient;
 import shop.chaekmate.common.log.registry.LogRegistryInitializer;
+import shop.chaekmate.common.log.registry.LogUnRegistry;
 import shop.chaekmate.common.log.storage.LogStorage;
 
 @Configuration
@@ -20,7 +21,8 @@ import shop.chaekmate.common.log.storage.LogStorage;
         LogController.class,
         LogRegistryInitializer.class,
         LogRegistryClient.class,
-        ServerInfo.class
+        ServerInfo.class,
+        LogUnRegistry.class
 })
 public class LogAutoConfiguration {
 }

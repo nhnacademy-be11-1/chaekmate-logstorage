@@ -8,7 +8,9 @@ import shop.chaekmate.common.log.dto.ResponseTimeLog;
 import shop.chaekmate.common.log.worker.LogWorker;
 
 @RequiredArgsConstructor
+
 public class Log {
+    private static final String UNKNOWN_EVENT_TYPE = "UNKNOWN";
     public static void Info(String serviceName,
                             String eventType,
                             String message,
@@ -25,7 +27,39 @@ public class Log {
 
         submit(log);
     }
+    public static void Info(String serviceName,
+                            String message,
+                            Object... args) {
+        StackTraceElement classAndMethod = Thread.currentThread().getStackTrace()[2];
+        InfoLog log = InfoLog.of(
+                serviceName,
+                LogContext.getEventType().orElse(UNKNOWN_EVENT_TYPE),
+                classAndMethod.getClassName(),
+                classAndMethod.getMethodName(),
+                message,
+                args
+        );
 
+        submit(log);
+    }
+
+    public static void Error(String serviceName,
+                             Exception e,
+                             String eventType,
+                             int status,
+                             String message,
+                             Object... args) {
+
+        ErrorLog log = ErrorLog.of(
+                serviceName,
+                eventType,
+                e,
+                status,
+                message,
+                args
+        );
+        submit(log);
+    }
     public static void Error(String serviceName,
                              Exception e,
                              int status,
@@ -34,6 +68,7 @@ public class Log {
 
         ErrorLog log = ErrorLog.of(
                 serviceName,
+                LogContext.getEventType().orElse(UNKNOWN_EVENT_TYPE),
                 e,
                 status,
                 message,
@@ -44,17 +79,31 @@ public class Log {
 
     public static void ResponseTime(String serviceName,
                                     Long responseTime,
-                                    String path,
-                                    String httpMethod,
+                                    String eventType,
                                     String message,
                                     Object... args) {
         StackTraceElement classAndMethod = Thread.currentThread().getStackTrace()[2];
 
         ResponseTimeLog log = ResponseTimeLog.of(
                 serviceName,
+                eventType,
                 responseTime,
-                path,
-                httpMethod,
+                classAndMethod.getMethodName(),
+                classAndMethod.getClassName(),
+                message,
+                args);
+        submit(log);
+    }
+    public static void ResponseTime(String serviceName,
+                                    Long responseTime,
+                                    String message,
+                                    Object... args) {
+        StackTraceElement classAndMethod = Thread.currentThread().getStackTrace()[2];
+
+        ResponseTimeLog log = ResponseTimeLog.of(
+                serviceName,
+                LogContext.getEventType().orElse(UNKNOWN_EVENT_TYPE),
+                responseTime,
                 classAndMethod.getMethodName(),
                 classAndMethod.getClassName(),
                 message,

@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import shop.chaekmate.common.log.logging.LogContext;
 
 @Getter
 @NoArgsConstructor
@@ -17,6 +18,7 @@ public class ErrorLog extends BaseLog {
 
     public static ErrorLog of(
             String serviceName,
+            String eventType,
             Exception e,
             int status,
             String message,
@@ -27,6 +29,7 @@ public class ErrorLog extends BaseLog {
         return ErrorLog.builder()
                 .logType("ERROR")
                 .serviceName(serviceName)
+                .eventType(eventType)
                 .occurrenceTime(LocalDateTime.now())
                 .className(origin.getClassName())
                 .methodName(origin.getMethodName())

@@ -11,11 +11,11 @@ import lombok.experimental.SuperBuilder;
 
 public abstract class BaseLog {
     String logType;
+    String eventType;
     String serviceName;
     LocalDateTime occurrenceTime;
     String className;
     String methodName;
     String message;
-
 
 }

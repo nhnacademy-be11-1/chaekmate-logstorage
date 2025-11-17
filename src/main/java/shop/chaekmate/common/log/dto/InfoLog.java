@@ -1,15 +1,16 @@
 package shop.chaekmate.common.log.dto;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import shop.chaekmate.common.log.logging.LogContext;
 
 @Getter
 @NoArgsConstructor
 @SuperBuilder(toBuilder = true)
 public class InfoLog extends BaseLog {
-    String eventType;
 
     public static InfoLog of(
             String serviceName,
@@ -30,5 +31,4 @@ public class InfoLog extends BaseLog {
                 .message(LogMessageFormatter.format(message, args))
                 .build();
     }
-
 }

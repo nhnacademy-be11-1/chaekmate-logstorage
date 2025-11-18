@@ -9,7 +9,7 @@ import shop.chaekmate.common.log.interceptor.LogInterceptor;
 @Configuration
 public class LogWebConfig implements WebMvcConfigurer {
     @Value("${spring.application.name:localhost}")
-    private String serviceName;
+    public String serviceName;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

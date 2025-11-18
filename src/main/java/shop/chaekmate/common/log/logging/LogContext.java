@@ -4,6 +4,7 @@ import jakarta.annotation.PostConstruct;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import shop.chaekmate.common.log.config.LogWebConfig;
 import shop.chaekmate.common.log.executor.LogThreadPool;
 import shop.chaekmate.common.log.storage.LogStorage;
 
@@ -13,14 +14,15 @@ public class LogContext {
     private static final ThreadLocal<String> eventType = new ThreadLocal<>();
     private final LogThreadPool logThreadPool;
     private final LogStorage logStorage;
-
+    private final LogWebConfig logWebConfig;
     private static LogThreadPool staticThreadPool;
     private static LogStorage staticStorage;
-
+    public static String serviceName;
     @PostConstruct
     public void init() {
         staticThreadPool = this.logThreadPool;
         staticStorage = this.logStorage;
+        serviceName = this.logWebConfig.serviceName;
     }
 
     public static LogThreadPool threadPool() {

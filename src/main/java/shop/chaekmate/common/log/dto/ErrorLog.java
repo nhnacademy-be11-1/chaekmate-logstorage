@@ -27,6 +27,7 @@ public class ErrorLog extends BaseLog {
         StackTraceElement origin = e.getStackTrace()[0];
 
         return ErrorLog.builder()
+                .logHint("ERROR")
                 .logType("ERROR")
                 .serviceName(serviceName)
                 .eventType(eventType)

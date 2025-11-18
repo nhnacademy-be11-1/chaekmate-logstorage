@@ -22,6 +22,7 @@ public class InfoLog extends BaseLog {
 
     ) {
         return InfoLog.builder()
+                .logHint("INFO")
                 .logType("INFO")
                 .eventType(eventType)
                 .serviceName(serviceName)

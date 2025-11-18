@@ -10,6 +10,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder(toBuilder = true)
 
 public abstract class BaseLog {
+    String logHint;
     String logType;
     String eventType;
     String serviceName;

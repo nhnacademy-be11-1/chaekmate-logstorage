@@ -20,6 +20,7 @@ public class ResponseTimeLog extends BaseLog {
             Object... args
     ) {
         return ResponseTimeLog.builder()
+                .logHint("RESPONSE-TIME")
                 .logType("RESPONSE-TIME")
                 .serviceName(serviceName)
                 .eventType(eventType)

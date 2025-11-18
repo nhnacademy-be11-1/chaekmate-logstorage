@@ -11,7 +11,7 @@ import shop.chaekmate.common.log.worker.LogWorker;
 
 public class Log {
     private static final String UNKNOWN_EVENT_TYPE = "UNKNOWN";
-    public static void Info(String serviceName,
+    public static void InfoWithType(String serviceName,
                             String eventType,
                             String message,
                             Object... args) {
@@ -43,7 +43,7 @@ public class Log {
         submit(log);
     }
 
-    public static void Error(String serviceName,
+    public static void ErrorWithType(String serviceName,
                              Exception e,
                              String eventType,
                              int status,
@@ -77,7 +77,7 @@ public class Log {
         submit(log);
     }
 
-    public static void ResponseTime(String serviceName,
+    public static void ResponseTimeWithType(String serviceName,
                                     Long responseTime,
                                     String eventType,
                                     String message,

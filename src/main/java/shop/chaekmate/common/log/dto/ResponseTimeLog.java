@@ -14,8 +14,8 @@ public class ResponseTimeLog extends BaseLog {
             String serviceName,
             String eventType,
             Long responseTime,
-            String methodName,
             String className,
+            String methodName,
             String message,
             Object... args
     ) {

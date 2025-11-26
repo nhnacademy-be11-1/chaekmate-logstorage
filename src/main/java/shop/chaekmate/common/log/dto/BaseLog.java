@@ -1,4 +1,22 @@
 package shop.chaekmate.common.log.dto;
 
+import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+
+@Getter
+@NoArgsConstructor
+@SuperBuilder(toBuilder = true)
+
 public abstract class BaseLog {
+    String logHint;
+    String logType;
+    String eventType;
+    String serviceName;
+    LocalDateTime occurrenceTime;
+    String className;
+    String methodName;
+    String message;
+
 }

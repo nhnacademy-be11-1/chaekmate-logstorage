@@ -3,15 +3,15 @@ package shop.chaekmate.common.log.logging;
 import jakarta.annotation.PostConstruct;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import shop.chaekmate.common.log.config.LogWebConfig;
 import shop.chaekmate.common.log.executor.LogThreadPool;
 import shop.chaekmate.common.log.storage.LogStorage;
 
-@Component
 @RequiredArgsConstructor
 public class LogContext {
     private static final ThreadLocal<String> eventType = new ThreadLocal<>();
+    public static boolean enabled = false;
+
     private final LogThreadPool logThreadPool;
     private final LogStorage logStorage;
     private final LogWebConfig logWebConfig;
@@ -24,13 +24,16 @@ public class LogContext {
         staticStorage = this.logStorage;
         serviceName = this.logWebConfig.serviceName;
     }
-
     public static LogThreadPool threadPool() {
         return staticThreadPool;
     }
 
     public static LogStorage storage() {
         return staticStorage;
+    }
+
+    public static void setEnabled(boolean isEnabled) {
+        enabled = isEnabled;
     }
 
     public static Optional<String>  getEventType(){

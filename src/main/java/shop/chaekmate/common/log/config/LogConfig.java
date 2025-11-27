@@ -25,14 +25,4 @@ public class LogConfig {
                 new LinkedBlockingQueue<>(boundarySize)
         );
     }
-
-    @Bean
-    public ExecutorService logRegistryExecutorService(){
-        return new ThreadPoolExecutor(
-                1,
-                1,
-                0L,
-                TimeUnit.MILLISECONDS,
-                new LinkedBlockingQueue<>());
-    }
 }

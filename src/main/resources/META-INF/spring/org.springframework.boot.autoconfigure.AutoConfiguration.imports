@@ -1,2 +1,3 @@
 shop.chaekmate.common.log.autoconfigure.LogAutoConfiguration
-shop.chaekmate.common.log.autoconfigure.FeignAutoConfig
+shop.chaekmate.common.log.autoconfigure.LogProperties
+shop.chaekmate.common.log.autoconfigure.LogRegistryAutoConfig

@@ -13,6 +13,9 @@ public class Log {
             String eventType,
             String message,
             Object... args) {
+        if (!LogContext.enabled) {
+            return;
+        }
         StackTraceElement caller = CallerResolver.resolveCaller();
         submit(convertInfoLog(eventType, caller.getClassName(), caller.getMethodName(), message, args));
     }
@@ -20,6 +23,10 @@ public class Log {
     public static void Info(
             String message,
             Object... args) {
+        if (!LogContext.enabled) {
+            return;
+        }
+
         StackTraceElement caller = CallerResolver.resolveCaller();
         submit(convertInfoLog(LogContext.getEventType().orElse(UNKNOWN_EVENT_TYPE), caller.getClassName(),
                 caller.getMethodName(), message, args));
@@ -30,6 +37,10 @@ public class Log {
             String method,
             String message,
             Object... args) {
+        if (!LogContext.enabled) {
+            return;
+        }
+
         submit(convertInfoLog(LogContext.getEventType().orElse(UNKNOWN_EVENT_TYPE), className, method,
                 message, args));
     }
@@ -40,6 +51,10 @@ public class Log {
             String methodName,
             String message,
             Object... args) {
+        if (!LogContext.enabled) {
+            return;
+        }
+
         submit(convertInfoLog(eventType, className, methodName, message, args));
     }
 
@@ -50,6 +65,10 @@ public class Log {
             int status,
             String message,
             Object... args) {
+        if (!LogContext.enabled) {
+            return;
+        }
+
         submit(convertErrorLog(eventType, e, status, message, args));
     }
 
@@ -58,6 +77,10 @@ public class Log {
             int status,
             String message,
             Object... args) {
+        if (!LogContext.enabled) {
+            return;
+        }
+
         submit(convertErrorLog(LogContext.getEventType().orElse(UNKNOWN_EVENT_TYPE), e, status, message,
                 args));
     }
@@ -67,6 +90,10 @@ public class Log {
             String eventType,
             String message,
             Object... args) {
+        if (!LogContext.enabled) {
+            return;
+        }
+
         StackTraceElement callerResolver = CallerResolver.resolveCaller();
         submit(convertResponseTime(responseTime, eventType, callerResolver.getClassName(),
                 callerResolver.getMethodName(), message, args));
@@ -77,6 +104,10 @@ public class Log {
             Long responseTime,
             String message,
             Object... args) {
+        if (!LogContext.enabled) {
+            return;
+        }
+
         StackTraceElement callerResolver = CallerResolver.resolveCaller();
         submit(convertResponseTime(responseTime, LogContext.getEventType().orElse(UNKNOWN_EVENT_TYPE),
                 callerResolver.getClassName(), callerResolver.getMethodName(), message, args));
@@ -88,6 +119,10 @@ public class Log {
             String methodName,
             String message,
             Object... args) {
+        if (!LogContext.enabled) {
+            return;
+        }
+
         submit(convertResponseTime(responseTime, LogContext.getEventType().orElse(UNKNOWN_EVENT_TYPE), className,
                 methodName, message, args));
     }
@@ -99,6 +134,10 @@ public class Log {
             String methodName,
             String message,
             Object... args) {
+        if (!LogContext.enabled) {
+            return;
+        }
+
         submit(convertResponseTime(responseTime, eventType, className, methodName, message, args));
     }
 
@@ -139,6 +178,10 @@ public class Log {
     }
 
     private static void submit(BaseLog log) {
+        if (!LogContext.enabled) {
+            return;
+        }
+
         LogContext.threadPool().submit(new LogWorker(LogContext.storage(), log));
     }
 

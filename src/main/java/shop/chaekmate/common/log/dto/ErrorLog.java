@@ -3,6 +3,8 @@ package shop.chaekmate.common.log.dto;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.time.LocalDateTime;
+import java.util.UUID;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -20,21 +22,19 @@ public class ErrorLog extends BaseLog {
             String serviceName,
             String eventType,
             Exception e,
-            int status,
-            String message,
-            Object... args
+            int status
     ) {
         StackTraceElement origin = e.getStackTrace()[0];
 
         return ErrorLog.builder()
                 .logHint("ERROR")
                 .logType("ERROR")
+                .traceId(LogContext.getTraceId().orElse(UUID.randomUUID()))
                 .serviceName(serviceName)
                 .eventType(eventType)
                 .occurrenceTime(LocalDateTime.now())
                 .className(origin.getClassName())
                 .methodName(origin.getMethodName())
-                .message(LogMessageFormatter.format(message, args))
                 .errorStatus(status)
                 .errorType(e.getClass().getSimpleName())
                 .errorTrace(traceToString(e))

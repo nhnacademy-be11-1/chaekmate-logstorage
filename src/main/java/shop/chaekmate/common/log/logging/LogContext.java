@@ -2,6 +2,8 @@ package shop.chaekmate.common.log.logging;
 
 import jakarta.annotation.PostConstruct;
 import java.util.Optional;
+import java.util.UUID;
+
 import lombok.RequiredArgsConstructor;
 import shop.chaekmate.common.log.config.LogWebConfig;
 import shop.chaekmate.common.log.executor.LogThreadPool;
@@ -10,6 +12,7 @@ import shop.chaekmate.common.log.storage.LogStorage;
 @RequiredArgsConstructor
 public class LogContext {
     private static final ThreadLocal<String> eventType = new ThreadLocal<>();
+    private static final ThreadLocal<UUID> traceId = new ThreadLocal<>();
     public static boolean enabled = false;
 
     private final LogThreadPool logThreadPool;
@@ -35,14 +38,20 @@ public class LogContext {
     public static void setEnabled(boolean isEnabled) {
         enabled = isEnabled;
     }
-
     public static Optional<String>  getEventType(){
         return Optional.ofNullable(eventType.get());
     }
-    public static void setThreadLocal(String type) {
+    public static Optional<UUID> getTraceId(){
+        return Optional.ofNullable(traceId.get());
+    }
+    public static void setEventType(String type) {
         eventType.set(type);
+    }
+    public static void setTraceId(UUID uuid){
+        traceId.set(uuid);
     }
     public static void clearThreadLocal(){
         eventType.remove();
+        traceId.remove();
     }
 }

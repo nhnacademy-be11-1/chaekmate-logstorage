@@ -1,6 +1,8 @@
 package shop.chaekmate.common.log.dto;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -12,11 +14,10 @@ import lombok.experimental.SuperBuilder;
 public abstract class BaseLog {
     String logHint;
     String logType;
+    UUID traceId;
     String eventType;
     String serviceName;
     LocalDateTime occurrenceTime;
     String className;
     String methodName;
-    String message;
-
 }

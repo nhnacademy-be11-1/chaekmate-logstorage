@@ -23,8 +23,19 @@ public class LogInterceptor implements HandlerInterceptor {
             path = req.getRequestURI();
         }
         String eventType = String.format("%s:%s:%s", serverName, httpMethod, path);
+
+        String incomingTraceId = req.getHeader("X-Trace-Id");
+
+        if (incomingTraceId != null && !incomingTraceId.isEmpty()) {
+            try {
+                LogContext.setTraceId(UUID.fromString(incomingTraceId));
+            } catch (IllegalArgumentException e) {
+                LogContext.setTraceId(UUID.randomUUID());
+            }
+        } else {
+            LogContext.setTraceId(UUID.randomUUID());
+        }
         LogContext.setEventType(eventType);
-        LogContext.setTraceId(UUID.randomUUID());
         return true;
     }
 

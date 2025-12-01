@@ -1,9 +1,7 @@
 package shop.chaekmate.common.log.dto;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 import java.util.UUID;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;

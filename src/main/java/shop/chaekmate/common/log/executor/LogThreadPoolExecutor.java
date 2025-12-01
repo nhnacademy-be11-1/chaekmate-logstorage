@@ -4,8 +4,6 @@ import java.util.UUID;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-
-import shop.chaekmate.common.log.logging.Log;
 import shop.chaekmate.common.log.logging.LogContext;
 
 public class LogThreadPoolExecutor extends ThreadPoolExecutor {
